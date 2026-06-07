@@ -1,0 +1,400 @@
+# We will recreate the wedding invitation HTML code with specific customizations requested:
+# Mempelai Wanita: Prela Suci Anggraeni
+# Mempelai Pria: Adi Tya Rahmanto
+# Language: Bahasa Indonesia
+
+html_content_custom = """<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan Online - Prela & Adit</title>
+    <style>
+        /* --- RESET & DASAR --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background-color: #faf4f0; /* Warna cream hangat romantis */
+            color: #3d3d3d;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        /* Pembungkus halaman agar pas di layar HP (Mobile Friendly) */
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            box-shadow: 0 0 25px rgba(140, 98, 57, 0.1);
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 60px;
+        }
+
+        /* --- BAGIAN COVER / HERO (BERGERAK) --- */
+        .hero {
+            background-color: #ebdcd0;
+            padding: 70px 20px;
+            position: relative;
+            animation: fadeIn 2s ease-in-out;
+            border-bottom: 3px double #d4bda7;
+        }
+
+        .hero p {
+            font-size: 11pt;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #6e6e6e;
+            margin-bottom: 15px;
+        }
+
+        .couple-names {
+            font-size: 32pt;
+            color: #5c2c2c; /* Warna maroon kecokelatan yang mewah */
+            margin: 25px 0;
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            font-weight: normal;
+            line-height: 1.2;
+            animation: slideUp 1.8s ease-out; /* Efek bergerak ke atas secara halus, efek love love */
+        }
+
+        .hero .date {
+            font-size: 11pt;
+            font-weight: bold;
+            color: #8c6239;
+            letter-spacing: 2px;
+            margin-top: 15px;
+        }
+
+        /* --- KOTAK MUSIK PENGIRING --- */
+        .music-box {
+            background: #fbf5f0;
+            border: 1px solid #e0cdbe;
+            padding: 15px;
+            margin: 25px auto;
+            width: 88%;
+            border-radius: 20px;
+            font-size: 10pt;
+            color: #8c6239;
+        }
+        
+        .music-box audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        /* Animasi berdenyut lembut menarik perhatian */
+        .pulse {
+            animation: pulseGlow 3s infinite;
+        }
+
+        /* --- BAGIAN KONTEN / PROFIL --- */
+        .section {
+            padding: 45px 25px;
+        }
+
+        .section h2 {
+            font-size: 16pt;
+            color: #5c2c2c;
+            margin-bottom: 25px;
+            font-weight: normal;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #e0cdbe;
+            padding-bottom: 8px;
+            display: inline-block;
+            width: 75%;
+        }
+
+        .profile-name {
+            font-size: 15pt;
+            font-weight: bold;
+            color: #8c6239;
+            margin-top: 5px;
+        }
+
+        .parent-info {
+            font-size: 10pt;
+            font-style: italic;
+            color: #6b6b6b;
+            margin-top: 2px;
+        }
+
+        .ampersand {
+            font-size: 22pt;
+            color: #5c2c2c;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        /* --- DETAIL JADWAL ACARA --- */
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background-color: #faf6f2;
+            text-align: left;
+        }
+
+        .details-table td {
+            padding: 14px;
+            border: 1px solid #ebdcd0;
+            font-size: 10.5pt;
+            vertical-align: top;
+        }
+
+        .details-table td.label {
+            font-weight: bold;
+            color: #5c2c2c;
+            width: 30%;
+            background-color: #ebdcd0;
+            text-align: center;
+        }
+
+        /* --- KOTAK UCAPAN INTERAKTIF --- */
+        .wishes-box {
+            text-align: left;
+            background: #faf6f2;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e0cdbe;
+            margin-top: 15px;
+        }
+
+        .wish-form input, .wish-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border: 1px solid #cca78f;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 10pt;
+            background-color: #ffffff;
+        }
+
+        .wish-form button {
+            background-color: #5c2c2c;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 11pt;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .wish-form button:hover {
+            background-color: #8c6239;
+        }
+
+        .wishes-list {
+            margin-top: 25px;
+            max-height: 260px;
+            overflow-y: auto;
+        }
+
+        .wish-item {
+            background: white;
+            padding: 14px;
+            border-left: 4px solid #8c6239;
+            margin-bottom: 12px;
+            border-radius: 0 6px 6px 0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        }
+
+        .wish-user {
+            font-weight: bold;
+            font-size: 10pt;
+            color: #5c2c2c;
+            margin-bottom: 4px;
+        }
+
+        .wish-text {
+            font-size: 10pt;
+            color: #444444;
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 9pt;
+            color: #8c8c8c;
+            padding-bottom: 25px;
+            border-top: 1px dashed #e0cdbe;
+            padding-top: 20px;
+        }
+
+        /* --- ANIMASI --- */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(40px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- COVER / UTAMA -->
+        <div class="hero">
+            <p>Walimatul 'Ursy</p>
+            <div class="couple-names">
+                Prela & Adit
+            </div>
+            <p>Undangan Pernikahan</p>
+            <div class="date">Minggu, 18 Oktober 2026</div>
+        </div>
+
+        <!-- PLAY MUSIK -->
+        <div class="music-box pulse">
+            <div>🎵 <strong>Musik Pengiring Undangan</strong></div>
+            <audio controls autoplay loop>
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                Browser Anda tidak mendukung pemutar musik langsung.
+            </audio>
+            <div style="font-size:8pt; color:#8c8c8c; margin-top:5px;">(Tekan tombol mainkan jika musik tidak berputar otomatis)</div>
+        </div>
+
+        <!-- PROFIL KEDUA MEMPELAI -->
+        <div class="section">
+            <h2>Mempelai Pernikahan</h2>
+            <p style="font-size: 10pt; font-style: italic; margin-bottom: 25px; color:#555555;">
+                Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. Dengan memohon rahmat dan rida-Mu, kami bermaksud mengundang Bapak/Ibu/Saudara/i ke acara pernikahan kami:
+            </p>
+            
+            <!-- Mempelai Wanita -->
+            <div class="profile-box">
+                <div class="profile-name">Prela Suci Anggraeni</div>
+                <div class="parent-info">Putri tercinta dari Bapak Suharyono & Ibu Siti Musringah </div>
+            </div>
+
+            <div class="ampersand">dengan</div>
+
+            <!-- Mempelai Pria -->
+            <div class="profile-box">
+                <div class="profile-name">Adi Tya Rahmanto</div>
+                <div class="parent-info">Putra tercinta dari Bapak Bambang Priatno & Ibu Suratmi </div>
+            </div>
+        </div>
+
+        <!-- JADWAL DAN TEMPAT LOKASI -->
+        <div class="section">
+            <h2>Waktu & Tempat</h2>
+            
+            <table class="details-table">
+                <tr>
+                    <td class="label">Akad Nikah</td>
+                    <td>
+                        <strong>Pukul 09:00 - 10:30 WIB</strong><br>
+                        Kediaman Mempelai Wanita / Masjid Ar-Rahman, Gunung Putri Rt02/04
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">Resepsi</td>
+                    <td>
+                        <strong>Pukul 11:00 - 16:00 WIB</strong><br>
+                        Gedung Balai Desa <br>
+                        Jl. Raya Gunung Putri Selatan, Bogor, Indonesia
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- LIVE GUESTBOOK / UCAPAN -->
+        <div class="section">
+            <h2>Kotak Ucapan & Doa Restu</h2>
+            <p style="font-size: 10pt; color: #6e6e6e; margin-bottom: 15px;">
+                Tuliskan untaian kata, ucapan selamat, ataupun doa restu Anda untuk kedua mempelai di bawah ini:
+            </p>
+            
+            <div class="wishes-box">
+                <!-- Form Pengisian -->
+                <div class="wish-form">
+                    <input type="text" id="guestName" placeholder="Nama Lengkap Anda">
+                    <textarea id="guestWish" rows="3" placeholder="Tulis doa restu Anda untuk Prela & Adi..."></textarea>
+                    <button type="button" onclick="addWish()">Kirim Doa Restu</button>
+                </div>
+
+                <!-- List Tampilan Ucapan -->
+                <div class="wishes-list" id="wishesList">
+                    <div class="wish-item">
+                        <div class="wish-user">Keluarga Besar Sanjaya</div>
+                        <div class="wish-text">Selamat menempuh hidup baru Prela dan Adi! Semoga menjadi keluarga yang sakinah, mawaddah, warahmah. Dilancarkan acaranya sampai hari H! 🌸</div>
+                    </div>
+                    <div class="wish-item">
+                        <div class="wish-user">Rian & Fitri</div>
+                        <div class="wish-text">Happy Wedding Adi dan pasangan! Ikut berbahagia melihat kalian berdua bersanding. Semoga langgeng hingga kakek nenek. Amin. 🥂</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- KAKI HALAMAN -->
+        <footer>
+            <p>Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.</p>
+            <p style="margin-top:15px; font-size:8pt; font-weight:bold; color:#5c2c2c;">Prela & Adi Wedding © 2026</p>
+        </footer>
+
+    </div>
+
+    <!-- SCRIPT INTERAKSI LIVE -->
+    <script>
+        function addWish() {
+            var nama = document.getElementById('guestName').value;
+            var ucapan = document.getElementById('guestWish').value;
+            
+            if(nama.trim() === "" || ucapan.trim() === "") {
+                alert("Harap masukkan nama dan ucapan doa Anda terlebih dahulu.");
+                return;
+            }
+            
+            var listUcapan = document.getElementById('wishesList');
+            
+            // Membuat wadah ucapan baru secara dinamis
+            var itemBaru = document.createElement('div');
+            itemBaru.className = 'wish-item';
+            itemBaru.style.animation = 'slideUp 0.6s ease-out';
+            
+            var divNama = document.createElement('div');
+            divNama.className = 'wish-user';
+            divNama.innerText = nama;
+            
+            var divTeks = document.createElement('div');
+            divTeks.className = 'wish-text';
+            divTeks.innerText = ucapan;
+            
+            itemBaru.appendChild(divNama);
+            itemBaru.appendChild(divTeks);
+            
+            // Masukkan ke urutan paling atas agar langsung terlihat
+            listUcapan.insertBefore(itemBaru, listUcapan.firstChild);
+            
+            // Kosongkan form kembali setelah berhasil kirim
+            document.getElementById('guestName').value = '';
+            document.getElementById('guestWish').value = '';
+        }
+    </script>
+</body>
+</html>
+"""
+
+with open("undangan_prela_adi.html", "w", encoding="utf-8") as f:
+    f.write(html_content_custom)
+print("Custom HTML created successfully.")
